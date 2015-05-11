@@ -93,9 +93,33 @@
     <RelativeLayout
         android:id="@+id/ozone_container"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="340dp"
         android:layout_marginTop="42dp"
         android:layout_marginLeft="12dp">
+
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:id="@+id/risk_container"
+        android:layout_width="fill_parent"
+        android:layout_height="131dp"
+        android:layout_below="@+id/ozone_container"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:background="@color/low_risk_bkgd">
+
+        <TextView
+            android:id="@+id/t_risk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:paddingTop="3dp"
+            android:textSize="38dp"
+            android:letterSpacing="-0.01"
+            android:includeFontPadding="false"
+            android:textColor="@color/low_risk_text"
+            android:text="LOW RISK"/>
 
     </RelativeLayout>
 

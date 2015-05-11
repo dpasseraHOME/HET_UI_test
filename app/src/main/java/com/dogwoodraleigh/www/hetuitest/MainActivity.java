@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +16,8 @@ import java.util.ArrayList;
 
 
 public class MainActivity extends Activity {
+
+    private static final String LOG_TAG = "MainActivity";
 
     private static final int[] OZONE_X_COORD = {62, 222, 382, 542, 702, 862, 1022};
     private static final int[] OZONE_Y_COORD = {135, 296, 457, 618};
@@ -58,6 +61,8 @@ public class MainActivity extends Activity {
         ((TextView)findViewById(R.id.t_humidity)).setTypeface(tfRobBk);
         ((TextView)findViewById(R.id.t_humidity_1)).setTypeface(tfRobBk);
         ((TextView)findViewById(R.id.t_humidity_2)).setTypeface(tfRobLt);
+
+        ((TextView)findViewById(R.id.t_risk)).setTypeface(tfRobBk);
     }
 
     private void initOzoneDisplay() {
@@ -84,6 +89,30 @@ public class MainActivity extends Activity {
     }
 
     private void handleNewData() {
+        handleSecondaryEnvironmentalData();
+        handleOzoneData();
+        handleActivityData();
+        handleBPMData();
+        handleRiskData();
+    }
+
+    private void handleSecondaryEnvironmentalData() {
+
+    }
+
+    private void handleOzoneData() {
+
+    }
+
+    private void handleActivityData() {
+
+    }
+
+    private void handleBPMData() {
+
+    }
+
+    private void handleRiskData() {
 
     }
 
