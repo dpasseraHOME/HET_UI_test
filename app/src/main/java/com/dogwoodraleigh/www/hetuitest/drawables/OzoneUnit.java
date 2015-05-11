@@ -1,10 +1,12 @@
-package com.dogwoodraleigh.www.hetuitest;
+package com.dogwoodraleigh.www.hetuitest.drawables;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.Shape;
+
+import com.dogwoodraleigh.www.hetuitest.R;
 
 /**
  * Created by Dante on 5/10/2015.

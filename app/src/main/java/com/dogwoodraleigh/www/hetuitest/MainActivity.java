@@ -6,11 +6,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.dogwoodraleigh.www.hetuitest.drawables.ActivityMeter;
+import com.dogwoodraleigh.www.hetuitest.drawables.OzoneUnit;
 
 import java.util.ArrayList;
 
@@ -37,6 +38,7 @@ public class MainActivity extends Activity {
         initFullScreen();
         initCustomTextViews();
         initOzoneDisplay();
+        initActivityDisplay();
     }
 
     private void initFullScreen() {
@@ -86,6 +88,22 @@ public class MainActivity extends Activity {
                 circleView.setBackground(ozoneUnit);
             }
         }
+    }
+
+    private void initActivityDisplay() {
+        Log.d(LOG_TAG, "# initActivityDisplay");
+
+        RelativeLayout activityContainer = (RelativeLayout) findViewById(R.id.activity_container);
+
+        View meterView = new View(this);
+        meterView.setLayoutParams(new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT
+        ));
+
+        activityContainer.addView(meterView);
+
+        meterView.setBackground(new ActivityMeter(this));
     }
 
     private void handleNewData() {
