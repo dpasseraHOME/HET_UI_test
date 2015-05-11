@@ -90,4 +90,13 @@
 
     </LinearLayout>
 
+    <RelativeLayout
+        android:id="@+id/ozone_container"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
+        android:layout_marginLeft="12dp">
+
+    </RelativeLayout>
+
 </RelativeLayout>
