@@ -1,9 +1,12 @@
 package com.dogwoodraleigh.www.hetuitest;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 
 public class MainActivity extends Activity {
@@ -15,24 +18,34 @@ public class MainActivity extends Activity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+    protected void onResume() {
+        super.onResume();
+
+        initFullScreen();
+        initCustomTextViews();
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    private void initFullScreen() {
+        View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+    }
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+    private void initCustomTextViews() {
+        MainApplication app = (MainApplication) getApplication();
+        final Typeface tfRobBk = app.getCustomTypeface(MainApplication.TF_ROBOTO_BK);
+        final Typeface tfRobLt = app.getCustomTypeface(MainApplication.TF_ROBOTO_LT);
 
-        return super.onOptionsItemSelected(item);
+        ((TextView)findViewById(R.id.t_temp)).setTypeface(tfRobBk);
+        ((TextView)findViewById(R.id.t_temp_1)).setTypeface(tfRobBk);
+        ((TextView)findViewById(R.id.t_temp_2)).setTypeface(tfRobLt);
+
+        ((TextView)findViewById(R.id.t_humidity)).setTypeface(tfRobBk);
+        ((TextView)findViewById(R.id.t_humidity_1)).setTypeface(tfRobBk);
+        ((TextView)findViewById(R.id.t_humidity_2)).setTypeface(tfRobLt);
     }
 }

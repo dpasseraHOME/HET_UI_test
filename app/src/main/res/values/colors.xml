@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bkgd">#7da7d9</color>
+
+    <color name="low_risk_bkgd">#ffffff</color>
+    <color name="high_risk_bkgd">#b31b1b</color>
+    <color name="low_risk_text">#000000</color>
+    <color name="high_risk_text">#ffffff</color>
+
+    <color name="activity">#399744</color>
+
+    <color name="ozone_min">#ffffff</color>
+    <color name="ozone_mid">#3e536c</color>
+    <color name="ozone_max">#202b38</color>
+
+    <color name="environment_text">#ffffff</color>
+</resources>
