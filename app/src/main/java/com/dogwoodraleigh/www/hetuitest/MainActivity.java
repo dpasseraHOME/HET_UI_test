@@ -3,6 +3,8 @@ package com.dogwoodraleigh.www.hetuitest;
 import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -80,5 +82,16 @@ public class MainActivity extends Activity {
             }
         }
     }
+
+    private void handleNewData() {
+
+    }
+
+    public Handler dataProviderHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            handleNewData();
+        }
+    };
 
 }
