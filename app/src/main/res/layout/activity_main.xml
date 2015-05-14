@@ -6,11 +6,30 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:background="@color/bkgd"
     tools:context=".MainActivity">
 
-    <!--
-    android:background="@mipmap/ref"-->
+    <ImageView
+        android:id="@+id/bkgd_low"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:src="@mipmap/bkgd_low"/>
+
+    <ImageView
+        android:id="@+id/bkgd_high"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:src="@mipmap/bkgd_high"
+        android:alpha="0"/>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/clouds"/>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@mipmap/ref"/>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -94,46 +113,80 @@
     </LinearLayout>
 
     <RelativeLayout
-        android:id="@+id/ozone_container"
+        android:id="@+id/activity_container"
         android:layout_width="fill_parent"
-        android:layout_height="340dp"
-        android:layout_marginTop="42dp"
-        android:layout_marginLeft="12dp">
+        android:layout_height="wrap_content"
+        android:background="@mipmap/activity_meter_empty">
 
     </RelativeLayout>
-    
-    <RelativeLayout
-        android:id="@+id/risk_container"
-        android:layout_width="fill_parent"
-        android:layout_height="131dp"
-        android:layout_below="@+id/ozone_container"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginRight="2dp"
-        android:background="@color/low_risk_bkgd">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/t_bpm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="888"
+                android:textColor="@color/activity_text"
+                android:textSize="64dp"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:id="@+id/label_bpm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="66dp"
+                android:text="BPM"
+                android:textColor="@color/activity_text"
+                android:textSize="16dp"
+                android:layout_centerHorizontal="true"/>
+
+        </RelativeLayout>
 
         <TextView
-            android:id="@+id/t_risk"
+            android:id="@+id/t_slash"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:paddingTop="3dp"
-            android:textSize="38dp"
-            android:letterSpacing="-0.01"
-            android:includeFontPadding="false"
-            android:textColor="@color/low_risk_text"
-            android:text="LOW RISK"/>
+            android:text="/"
+            android:textColor="@color/activity_text"
+            android:textSize="64dp"
+            android:layout_marginLeft="12dp"/>
 
-    </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp">
 
-    <RelativeLayout
-        android:id="@+id/activity_container"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/risk_container"
-        android:layout_marginTop="12dp"
-        android:layout_centerHorizontal="true">
+            <TextView
+                android:id="@+id/t_rr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8"
+                android:textColor="@color/activity_text"
+                android:textSize="64dp"
+                android:layout_centerHorizontal="true"/>
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/label_rr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="66dp"
+                android:text="R-R"
+                android:textColor="@color/activity_text"
+                android:textSize="16dp"
+                android:layout_centerHorizontal="true"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>

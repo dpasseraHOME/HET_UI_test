@@ -7,11 +7,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import com.dogwoodraleigh.www.hetuitest.drawables.ActivityMeter;
-import com.dogwoodraleigh.www.hetuitest.drawables.OzoneUnit;
 
 import java.util.ArrayList;
 
@@ -64,46 +60,19 @@ public class MainActivity extends Activity {
         ((TextView)findViewById(R.id.t_humidity_1)).setTypeface(tfRobBk);
         ((TextView)findViewById(R.id.t_humidity_2)).setTypeface(tfRobLt);
 
-        ((TextView)findViewById(R.id.t_risk)).setTypeface(tfRobBk);
+        ((TextView)findViewById(R.id.t_bpm)).setTypeface(tfRobBk);
+        ((TextView)findViewById(R.id.label_bpm)).setTypeface(tfRobLt);
+        ((TextView)findViewById(R.id.t_rr)).setTypeface(tfRobBk);
+        ((TextView)findViewById(R.id.label_rr)).setTypeface(tfRobLt);
+        ((TextView)findViewById(R.id.t_slash)).setTypeface(tfRobBk);
     }
 
     private void initOzoneDisplay() {
-        RelativeLayout ozoneContainer = (RelativeLayout) findViewById(R.id.ozone_container);
-        int j;
-        View circleView;
-        OzoneUnit ozoneUnit;
 
-        for(int i=0; i<OZONE_X_COORD.length; i++) {
-            for(j=0; j<OZONE_Y_COORD.length; j++) {
-                circleView = new View(this);
-                circleView.setLayoutParams(new RelativeLayout.LayoutParams(
-                        RelativeLayout.LayoutParams.WRAP_CONTENT,
-                        RelativeLayout.LayoutParams.WRAP_CONTENT
-                ));
-
-                ozoneContainer.addView(circleView);
-                mOzoneUnitArr.add(circleView);
-
-                ozoneUnit = new OzoneUnit(this, OZONE_X_COORD[i], OZONE_Y_COORD[j]);
-                circleView.setBackground(ozoneUnit);
-            }
-        }
     }
 
     private void initActivityDisplay() {
-        Log.d(LOG_TAG, "# initActivityDisplay");
 
-        RelativeLayout activityContainer = (RelativeLayout) findViewById(R.id.activity_container);
-
-        View meterView = new View(this);
-        meterView.setLayoutParams(new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.WRAP_CONTENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT
-        ));
-
-        activityContainer.addView(meterView);
-
-        meterView.setBackground(new ActivityMeter(this));
     }
 
     private void handleNewData() {

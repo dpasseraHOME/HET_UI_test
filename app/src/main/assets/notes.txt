@@ -1,0 +1,3 @@
+Next
+- Revise layout based on new design
+w Add dummy data provider
