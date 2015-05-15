@@ -19,7 +19,7 @@ public class MainActivity extends Activity {
 
     private static final String LOG_TAG = "MainActivity";
 
-    private float mLastOzoneLevel = 0f;
+    private float mLastRiskLevel = 0f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,14 +59,12 @@ public class MainActivity extends Activity {
         ((TextView)findViewById(R.id.t_temp_2)).setTypeface(tfRobLt);
 
         ((TextView)findViewById(R.id.t_humidity)).setTypeface(tfRobBk);
-        ((TextView)findViewById(R.id.t_humidity_1)).setTypeface(tfRobBk);
-        ((TextView)findViewById(R.id.t_humidity_2)).setTypeface(tfRobLt);
+        ((TextView)findViewById(R.id.label_humidity)).setTypeface(tfRobLt);
 
         ((TextView)findViewById(R.id.t_bpm)).setTypeface(tfRobBk);
         ((TextView)findViewById(R.id.label_bpm)).setTypeface(tfRobLt);
         ((TextView)findViewById(R.id.t_rr)).setTypeface(tfRobBk);
         ((TextView)findViewById(R.id.label_rr)).setTypeface(tfRobLt);
-        ((TextView)findViewById(R.id.t_slash)).setTypeface(tfRobBk);
     }
 
     private void initOzoneDisplay() {
@@ -79,32 +77,18 @@ public class MainActivity extends Activity {
 
     private void handleNewData() {
         handleSecondaryEnvironmentalData();
-        handleOzoneData(DummyDataProvider.currentData.ozone);
+        handleOzoneData();
         handleActivityData();
         handleRRIData();
-        handleRiskData();
+//        handleRiskData();
     }
 
     private void handleSecondaryEnvironmentalData() {
 
     }
 
-    private void handleOzoneData(float ozone) {
-//        Log.d(LOG_TAG, "# handleOzoneData : "+ozone);
+    private void handleOzoneData() {
 
-        View view = findViewById(R.id.bkgd_high);
-        view.setAlpha(mLastOzoneLevel);
-        Log.d(LOG_TAG, "! "+view.getAlpha()+" -> "+(ozone/100));
-
-        AlphaAnimation anim = new AlphaAnimation(mLastOzoneLevel, ozone/100);
-        anim.setFillAfter(true);
-        anim.setFillEnabled(true);
-//        anim.setFillBefore(true);
-        anim.setDuration(150);
-
-        view.startAnimation(anim);
-
-        mLastOzoneLevel = ozone/100;
     }
 
     private void handleActivityData() {
@@ -115,8 +99,18 @@ public class MainActivity extends Activity {
 
     }
 
-    private void handleRiskData() {
+    private void handleRiskData(float risk) {
+        View view = findViewById(R.id.bkgd_high);
+        view.setAlpha(mLastRiskLevel);
 
+        AlphaAnimation anim = new AlphaAnimation(mLastRiskLevel, risk/100);
+        anim.setFillAfter(true);
+        anim.setFillEnabled(true);
+        anim.setDuration(150);
+
+        view.startAnimation(anim);
+
+        mLastRiskLevel = risk/100;
     }
 
     public Handler mDataProviderHandler = new Handler() {
