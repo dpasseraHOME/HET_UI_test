@@ -18,18 +18,17 @@
         android:id="@+id/bkgd_high"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:src="@mipmap/bkgd_high"
-        android:alpha="0"/>
+        android:src="@mipmap/bkgd_high"/>
 
     <ImageView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:src="@mipmap/clouds"/>
 
-    <ImageView
+    <!--ImageView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="@mipmap/ref"/>
+        android:background="@mipmap/ref"/-->
 
     <LinearLayout
         android:orientation="horizontal"
@@ -115,8 +114,17 @@
     <RelativeLayout
         android:id="@+id/activity_container"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="464px"
         android:background="@mipmap/activity_meter_empty">
+
+        <ImageView
+            android:id="@+id/activity_full"
+            android:layout_width="fill_parent"
+            android:layout_height="232px"
+            android:layout_alignParentBottom="true"
+            android:src="@mipmap/activity_meter_full"
+            android:scaleType="matrix"
+            android:rotation="90"/>
 
     </RelativeLayout>
 
@@ -125,7 +133,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true">
+        android:layout_below="@id/activity_container"
+        android:layout_marginTop="16dp">
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -138,6 +147,8 @@
                 android:text="888"
                 android:textColor="@color/activity_text"
                 android:textSize="64dp"
+                android:letterSpacing="-0.01"
+                android:includeFontPadding="false"
                 android:layout_centerHorizontal="true"/>
 
             <TextView
@@ -157,6 +168,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="/"
+            android:letterSpacing="-0.01"
+            android:includeFontPadding="false"
             android:textColor="@color/activity_text"
             android:textSize="64dp"
             android:layout_marginLeft="12dp"/>
@@ -173,6 +186,8 @@
                 android:text="8"
                 android:textColor="@color/activity_text"
                 android:textSize="64dp"
+                android:letterSpacing="-0.01"
+                android:includeFontPadding="false"
                 android:layout_centerHorizontal="true"/>
 
             <TextView

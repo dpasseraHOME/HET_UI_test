@@ -7,7 +7,10 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.TextView;
+
+import com.dogwoodraleigh.www.hetuitest.api.DummyDataProvider;
 
 import java.util.ArrayList;
 
@@ -16,10 +19,7 @@ public class MainActivity extends Activity {
 
     private static final String LOG_TAG = "MainActivity";
 
-    private static final int[] OZONE_X_COORD = {62, 222, 382, 542, 702, 862, 1022};
-    private static final int[] OZONE_Y_COORD = {135, 296, 457, 618};
-
-    private ArrayList<View> mOzoneUnitArr = new ArrayList<>();
+    private float mLastOzoneLevel = 0f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,8 @@ public class MainActivity extends Activity {
         initCustomTextViews();
         initOzoneDisplay();
         initActivityDisplay();
+
+        DummyDataProvider.startData(mDataProviderHandler);
     }
 
     private void initFullScreen() {
@@ -77,9 +79,9 @@ public class MainActivity extends Activity {
 
     private void handleNewData() {
         handleSecondaryEnvironmentalData();
-        handleOzoneData();
+        handleOzoneData(DummyDataProvider.currentData.ozone);
         handleActivityData();
-        handleBPMData();
+        handleRRIData();
         handleRiskData();
     }
 
@@ -87,15 +89,29 @@ public class MainActivity extends Activity {
 
     }
 
-    private void handleOzoneData() {
+    private void handleOzoneData(float ozone) {
+//        Log.d(LOG_TAG, "# handleOzoneData : "+ozone);
 
+        View view = findViewById(R.id.bkgd_high);
+        view.setAlpha(mLastOzoneLevel);
+        Log.d(LOG_TAG, "! "+view.getAlpha()+" -> "+(ozone/100));
+
+        AlphaAnimation anim = new AlphaAnimation(mLastOzoneLevel, ozone/100);
+        anim.setFillAfter(true);
+        anim.setFillEnabled(true);
+//        anim.setFillBefore(true);
+        anim.setDuration(150);
+
+        view.startAnimation(anim);
+
+        mLastOzoneLevel = ozone/100;
     }
 
     private void handleActivityData() {
 
     }
 
-    private void handleBPMData() {
+    private void handleRRIData() {
 
     }
 
@@ -103,7 +119,7 @@ public class MainActivity extends Activity {
 
     }
 
-    public Handler dataProviderHandler = new Handler() {
+    public Handler mDataProviderHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             handleNewData();

@@ -12,6 +12,7 @@ public class DataPackage {
     public float activity;
     public float rri;
     public float ecg;
+    public float ozone;
     public float risk;
 
     public DataPackage(
@@ -19,6 +20,7 @@ public class DataPackage {
         float accX, float accY, float accZ,
         float activity,
         float rri, float ecg,
+        float ozone,
         float risk
     ) {
         this.time = time;
@@ -28,6 +30,7 @@ public class DataPackage {
         this.activity = activity;
         this.rri = rri;
         this.ecg = ecg;
+        this.ozone = ozone;
         this.risk = risk;
     }
 
@@ -37,6 +40,7 @@ public class DataPackage {
                 src.accX, src.accY, src.accZ,
                 src.activity,
                 src.rri, src.ecg,
+                src.ozone,
                 src.risk
         );
     }
