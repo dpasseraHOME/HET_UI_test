@@ -3,21 +3,27 @@ package com.dogwoodraleigh.www.hetuitest;
 import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.View;
-import android.widget.RelativeLayout;
+import android.view.animation.AlphaAnimation;
 import android.widget.TextView;
+
+import com.dogwoodraleigh.www.hetuitest.api.DummyDataProvider;
 
 import java.util.ArrayList;
 
 
 public class MainActivity extends Activity {
 
-    private static final int[] OZONE_X_COORD = {62, 222, 382, 542, 702, 862, 1022};
-    private static final int[] OZONE_Y_COORD = {135, 296, 457, 618};
+    private static final String LOG_TAG = "MainActivity";
 
-    private ArrayList<View> mOzoneUnitArr = new ArrayList<>();
+    private float mLastRiskLevel = 0f;
+
+    private View mOzoneIndicator;
+    private View mActivityIndicator;
+    private final static float[] RISK_RNG = {210f, 1540f};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +38,9 @@ public class MainActivity extends Activity {
         initFullScreen();
         initCustomTextViews();
         initOzoneDisplay();
+        initActivityDisplay();
+
+        DummyDataProvider.startData(mDataProviderHandler);
     }
 
     private void initFullScreen() {
@@ -54,31 +63,67 @@ public class MainActivity extends Activity {
         ((TextView)findViewById(R.id.t_temp_2)).setTypeface(tfRobLt);
 
         ((TextView)findViewById(R.id.t_humidity)).setTypeface(tfRobBk);
-        ((TextView)findViewById(R.id.t_humidity_1)).setTypeface(tfRobBk);
-        ((TextView)findViewById(R.id.t_humidity_2)).setTypeface(tfRobLt);
+        ((TextView)findViewById(R.id.label_humidity)).setTypeface(tfRobLt);
+
+        ((TextView)findViewById(R.id.t_bpm)).setTypeface(tfRobBk);
+        ((TextView)findViewById(R.id.label_bpm)).setTypeface(tfRobLt);
+        ((TextView)findViewById(R.id.t_rr)).setTypeface(tfRobBk);
+        ((TextView)findViewById(R.id.label_rr)).setTypeface(tfRobLt);
     }
 
     private void initOzoneDisplay() {
-        RelativeLayout ozoneContainer = (RelativeLayout) findViewById(R.id.ozone_container);
-        int j;
-        View circleView;
-        OzoneUnit ozoneUnit;
-
-        for(int i=0; i<OZONE_X_COORD.length; i++) {
-            for(j=0; j<OZONE_Y_COORD.length; j++) {
-                circleView = new View(this);
-                circleView.setLayoutParams(new RelativeLayout.LayoutParams(
-                        RelativeLayout.LayoutParams.WRAP_CONTENT,
-                        RelativeLayout.LayoutParams.WRAP_CONTENT
-                ));
-
-                ozoneContainer.addView(circleView);
-                mOzoneUnitArr.add(circleView);
-
-                ozoneUnit = new OzoneUnit(this, OZONE_X_COORD[i], OZONE_Y_COORD[j]);
-                circleView.setBackground(ozoneUnit);
-            }
-        }
+        mOzoneIndicator = findViewById(R.id.ozone_indicator);
+        mOzoneIndicator.setY(RISK_RNG[0]);
     }
+
+    private void initActivityDisplay() {
+        mActivityIndicator = findViewById(R.id.activity_indicator);
+        mActivityIndicator.setY(RISK_RNG[0]);
+    }
+
+    private void handleNewData() {
+        handleSecondaryEnvironmentalData();
+        handleOzoneData();
+        handleActivityData();
+        handleRRIData();
+//        handleRiskData();
+    }
+
+    private void handleSecondaryEnvironmentalData() {
+
+    }
+
+    private void handleOzoneData() {
+
+    }
+
+    private void handleActivityData() {
+
+    }
+
+    private void handleRRIData() {
+
+    }
+
+    private void handleRiskData(float risk) {
+        View view = findViewById(R.id.bkgd_high);
+        view.setAlpha(mLastRiskLevel);
+
+        AlphaAnimation anim = new AlphaAnimation(mLastRiskLevel, risk/100);
+        anim.setFillAfter(true);
+        anim.setFillEnabled(true);
+        anim.setDuration(150);
+
+        view.startAnimation(anim);
+
+        mLastRiskLevel = risk/100;
+    }
+
+    public Handler mDataProviderHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            handleNewData();
+        }
+    };
 
 }
