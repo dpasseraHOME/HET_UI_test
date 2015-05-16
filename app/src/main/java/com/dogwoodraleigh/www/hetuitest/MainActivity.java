@@ -21,6 +21,10 @@ public class MainActivity extends Activity {
 
     private float mLastRiskLevel = 0f;
 
+    private View mOzoneIndicator;
+    private View mActivityIndicator;
+    private final static float[] RISK_RNG = {210f, 1540f};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,11 +72,13 @@ public class MainActivity extends Activity {
     }
 
     private void initOzoneDisplay() {
-
+        mOzoneIndicator = findViewById(R.id.ozone_indicator);
+        mOzoneIndicator.setY(RISK_RNG[0]);
     }
 
     private void initActivityDisplay() {
-
+        mActivityIndicator = findViewById(R.id.activity_indicator);
+        mActivityIndicator.setY(RISK_RNG[0]);
     }
 
     private void handleNewData() {
